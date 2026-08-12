@@ -1,0 +1,33 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Environment / secrets
+.env
+.env.*
+
+# DuckDB local database
+database/*.duckdb
+database/*.duckdb.wal
+database/*.wal
+
+# dbt artifacts
+transform/target/
+transform/dbt_packages/
+transform/logs/
+transform/profiles.yml
+
+# Excel temp / lock files
+~$*.xlsx
+*.tmp
+
+# OS junk
+.DS_Store
+Thumbs.db
