@@ -1,1 +1,5 @@
-"""Excel → DuckDB ingestion helpers (implemented in a later step)."""
+"""Excel → DuckDB ingestion (landing zone for bronze)."""
+
+from dbt_powerbi_analytics.ingest.load import load_raw_to_duckdb
+
+__all__ = ["load_raw_to_duckdb"]

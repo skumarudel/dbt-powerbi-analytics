@@ -1,7 +1,7 @@
 [project]
 name = "dbt-powerbi-analytics"
 version = "0.1.0"
-description = "Hospital analytics pipeline: Excel → DuckDB → dbt (bronze/silver/gold) → Power BI"
+description = "Hospital analytics: Excel ingest into DuckDB (dbt layers come later)"
 readme = "README.md"
 authors = [
     { name = "skumarudel", email = "skumarudel@gmail.com" }
@@ -11,7 +11,6 @@ dependencies = [
     "duckdb>=1.2.0",
     "pandas>=2.2.0",
     "openpyxl>=3.1.0",
-    "dbt-duckdb>=1.9.0",
 ]
 
 [project.scripts]
@@ -23,5 +22,6 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "ipykernel>=7.3.0",
     "pytest>=9.1.1",
 ]
