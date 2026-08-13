@@ -18,6 +18,13 @@ database/*.duckdb
 database/*.duckdb.wal
 database/*.wal
 
+# dbt artifacts
+transform/target/
+transform/dbt_packages/
+transform/logs/
+transform/profiles.yml
+transform/*.duckdb
+
 # Excel temp / lock files
 ~$*.xlsx
 *.tmp
