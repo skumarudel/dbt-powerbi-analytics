@@ -38,3 +38,4 @@ notebooks/
 # OS junk
 .DS_Store
 Thumbs.db
+logs/
