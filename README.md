@@ -40,7 +40,7 @@ uv run pytest tests/test_ingest.py -v
 # 3) Build silver models
 cd transform
 uv run dbt debug
-uv run dbt run --select dim_department dim_diagnosis dim_doctor
+uv run dbt run --select dim_department dim_department_hod dim_diagnosis dim_doctor dim_patient dim_treatment dim_payment_method fact_patient_visit
 ```
 
 ## Status
@@ -49,7 +49,11 @@ uv run dbt run --select dim_department dim_diagnosis dim_doctor
 |-------|--------|
 | Ingest → `raw.*` | Done |
 | Silver `dim_department` | Done |
+| Silver `dim_department_hod` | Done |
 | Silver `dim_diagnosis` | Done |
 | Silver `dim_doctor` | Done |
-| Other silver dims / facts | Next |
+| Silver `dim_patient` | Done |
+| Silver `dim_treatment` | Done |
+| Silver `dim_payment_method` | Done |
+| Silver `fact_patient_visit` | Done |
 | Gold + Power BI | Later |

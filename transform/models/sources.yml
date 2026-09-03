@@ -6,5 +6,13 @@ sources:
     schema: raw
     tables:
       - name: dim_department
+      - name: dept_hod
       - name: dim_diagnosis
       - name: dim_doctor
+      - name: dim_patient
+      - name: dim_treatment
+      - name: dim_payment_method
+      - name: patient_visits_2020_2021
+      - name: patient_visits_2022_2023
+      - name: patient_visits_2024
+      - name: patient_visits_2025

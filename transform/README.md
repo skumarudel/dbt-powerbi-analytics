@@ -57,8 +57,13 @@ uv run dbt debug
 | Model | Source | What it does |
 |-------|--------|----------------|
 | `dim_department` | `raw.dim_department` | Keep ID/name/category; strip `Dept-` prefix; drop null/blank rows; dedupe on `DepartmentID` |
+| `dim_department_hod` | `raw.dept_hod` | Trim; one HOD name per `DepartmentID` (join to department in gold) |
 | `dim_diagnosis` | `raw.dim_diagnosis` | Light trim; drop blank keys (source is already clean) |
+| `dim_treatment` | `raw.dim_treatment` | Light trim; drop blank keys (source is already clean) |
+| `dim_payment_method` | `raw.dim_payment_method` | Collapse 72 transaction rows to 4 methods via GROUP BY; keep ID + name |
 | `dim_doctor` | `raw.dim_doctor` | Drop empty rows; normalize `DoctorID` (`D-17-001` → `D001`); add `FullName`; trim text fields |
+| `dim_patient` | `raw.dim_patient` | Drop NaN rows; `FullName` only (initcap; drop First/Last); `DOB` as date; `M`/`F` → Male/Female; City/State/Country (drop combined location) |
+| `fact_patient_visit` | `raw.patient_visits_*` | Union four year tables; trim keys; dates as DATE; `VisitTime` to TIME (AM/PM + 24h); drop `DepartmentCategory` |
 
 ## Commands
 
@@ -71,8 +76,8 @@ uv run dbt debug
 # build one model
 uv run dbt run --select dim_department
 
-# build the three current silver dims
-uv run dbt run --select dim_department dim_diagnosis dim_doctor
+# build the current silver models
+uv run dbt run --select dim_department dim_department_hod dim_diagnosis dim_doctor dim_patient dim_treatment dim_payment_method fact_patient_visit
 
 # build everything under models/silver
 uv run dbt run --select path:models/silver
