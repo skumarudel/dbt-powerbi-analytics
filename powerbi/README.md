@@ -2,7 +2,15 @@
 
 Report file: [`hospital_dashboard.pbix`](hospital_dashboard.pbix)
 
-GitHub does not preview `.pbix` files. The screenshots below are the pages of **Amrita Research Hospital**. Draft notes — refine later.
+This report was built entirely in Power BI. The star schema, measures, and pages of **Amrita Research Hospital** all live in the `.pbix`. GitHub does not preview that file, so the screenshots below show the model and the report pages.
+
+The dbt pipeline in this repo (Excel → DuckDB → silver) is a separate check: whether the same cleaning and modeling can be automated, so Power BI can use prepared tables instead of doing that work inside the report.
+
+## Data model
+
+This is the Power BI model. `fact_patientVisits` sits in the center. Department, doctor, patient, payment method, diagnosis, and treatment connect to it, along with a calendar table and a key-measures table. These tables were created in Power BI. They are separate from the dbt silver models.
+
+![Data model](assets/DataTables.png)
 
 ## Executive Summary
 

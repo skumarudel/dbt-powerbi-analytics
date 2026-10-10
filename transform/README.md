@@ -6,7 +6,7 @@ dbt project that builds **silver** tables in DuckDB from the `raw` schema create
 rawdata/*.xlsx
     → Python ingest → raw.* (DuckDB)
     → dbt (this folder) → silver.* (DuckDB)
-    → gold / Power BI (later)
+    → Power BI (gold lives in the report, not a dbt layer)
 ```
 
 Bronze is skipped: ingest landing tables in `raw` are treated as the unchanged source layer.
@@ -57,7 +57,7 @@ uv run dbt debug
 | Model | Source | What it does |
 |-------|--------|----------------|
 | `dim_department` | `raw.dim_department` | Keep ID/name/category; strip `Dept-` prefix; drop null/blank rows; dedupe on `DepartmentID` |
-| `dim_department_hod` | `raw.dept_hod` | Trim; one HOD name per `DepartmentID` (join to department in gold) |
+| `dim_department_hod` | `raw.dept_hod` | Trim; one HOD name per `DepartmentID` (join to department in Power BI) |
 | `dim_diagnosis` | `raw.dim_diagnosis` | Light trim; drop blank keys (source is already clean) |
 | `dim_treatment` | `raw.dim_treatment` | Light trim; drop blank keys (source is already clean) |
 | `dim_payment_method` | `raw.dim_payment_method` | Collapse 72 transaction rows to 4 methods via GROUP BY; keep ID + name |
