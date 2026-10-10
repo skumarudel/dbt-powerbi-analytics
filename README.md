@@ -1,15 +1,18 @@
 # dbt-powerbi-analytics
 
-Hospital analytics pipeline: Excel → DuckDB → dbt silver → Power BI dashboard.
+Two pieces sit side by side: a hospital dashboard built entirely in Power BI, and a dbt pipeline that checks whether that same cleaning and modeling can be automated.
 
 ```text
-rawdata/*.xlsx
-    → Python ingest → database/analytics.duckdb (schema: raw)
-    → dbt transform/ → silver.* (department, diagnosis, doctor, …)
-    → Power BI (gold + dashboard; see powerbi/)
+Power BI (powerbi/)
+    star schema, measures, and dashboard built in the .pbix
+
+dbt pipeline (automation check)
+    rawdata/*.xlsx
+        → Python ingest → database/analytics.duckdb (schema: raw)
+        → dbt transform/ → silver.* (department, diagnosis, doctor, …)
 ```
 
-There is no extra gold layer in dbt. Gold (aggregations and the report model) is already built in Power BI on top of the silver tables.
+The current report uses tables created in Power BI. The dbt silver models are the automation check for preparing those same dimensions and the visit fact outside the report. There is no gold layer in dbt, because aggregations and the report model already live in the `.pbix`. See [powerbi/README.md](powerbi/README.md).
 
 ## Folders
 
@@ -59,5 +62,5 @@ uv run dbt run --select dim_department dim_department_hod dim_diagnosis dim_doct
 | Silver `dim_treatment` | Done |
 | Silver `dim_payment_method` | Done |
 | Silver `fact_patient_visit` | Done |
-| Power BI dashboard | Done — [screenshots](powerbi/README.md) |
+| Power BI dashboard | Done in the `.pbix` — [screenshots](powerbi/README.md) |
 | Gold | Done in Power BI (no dbt gold models) |
