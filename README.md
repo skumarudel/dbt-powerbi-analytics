@@ -1,5 +1,11 @@
 # dbt-powerbi-analytics
 
+## Goal
+
+Build a hospital analytics path: an ETL pipeline from Excel into DuckDB, dbt models that automate the transformation, and a Power BI dashboard for Amrita Research Hospital.
+
+The dashboard is an operations view: visit volume, billing, wait time, and patient ratings, with pages for patients, doctors, and departments.
+
 Two pieces sit side by side: a hospital dashboard built entirely in Power BI, and a dbt pipeline that checks whether that same cleaning and modeling can be automated.
 
 ```text
